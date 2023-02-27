@@ -1,33 +1,24 @@
 import React, { useState } from "react";
-import AddCategory from "./components/AddCategory";
+import { AddCategory, GifGrid } from "./components";
 
 const GifExpertApp = () => {
-  const [categories, setCategories] = useState(["One Punch", "Dragon Ball"]);
+  const [categories, setCategories] = useState(["One Punch"]);
 
   const onAddCategory = (newCategory) => {
+    if (categories.includes(newCategory)) return;
     setCategories([newCategory, ...categories]);
   };
 
   return (
     <>
       <h1>GifExpertApp</h1>
-      <AddCategory
-        onNewCategory={onAddCategory}
-        // setCategories={setCategories}
-      />
+      <AddCategory onNewCategory={onAddCategory} />
 
-      <ol>
-        {categories.map((category, index) => (
-          <li key={index}>{category}</li>
-        ))}
-      </ol>
+      {categories.map((category) => (
+        <GifGrid key={category} category={category} />
+      ))}
     </>
   );
 };
 
 export default GifExpertApp;
-
-// const apiKey = "C1khQe3Z7R1W2lfTO9myKeuShdqFYSGC";
-//   const resp = await fetch(
-//     `http://api.giphy.com/v1/gifs/random?api_key=${apiKey}`
-//   );

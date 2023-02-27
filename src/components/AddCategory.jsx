@@ -22,6 +22,7 @@ const AddCategory = ({ onNewCategory }) => {
         type="text"
         placeholder="Search  gifs"
         value={inputValue}
+        
         onChange={onInputChanged}
       />
     </form>
